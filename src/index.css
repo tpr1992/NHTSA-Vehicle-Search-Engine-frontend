@@ -7,7 +7,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+/* .card{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+} */
+
+.list-group{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.signup{
+  text-align: center;
+  height: 3vw;
+  /* display: grid; */
+  justify-content: center;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-header{
+  text-align: center;
+  padding: 1vw;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  width: 25%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 5px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 8px;
 }
