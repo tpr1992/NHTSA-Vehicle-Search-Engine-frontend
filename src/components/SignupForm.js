@@ -38,7 +38,7 @@ class SignupForm extends React.Component {
       <Grid textAlign='center' style={{ height: '35vh', marginBottom: 40 }} verticalAlign='middle'>
         <div className="signup1">
         <Header as='h2' color='black' textAlign='center'>
-          Sign Up
+          Register
         </Header>
       <Form size="medium" className="signup-form" onSubmit={this.handleSubmit} style={{width: 422}}>
       <Segment flat>
@@ -51,7 +51,7 @@ class SignupForm extends React.Component {
       <Form.Input
           fluid icon='lock' iconPosition='left' id="password-confirm-input" name="passwordConfirmation" type="password" placeholder="Confirm password..." onChange={this.handleChange} value={this.state.passwordConfirmation} />
       <br />
-        <input class="ui secondary button" type="submit" value="Log In" />
+        <input class="ui secondary button" type="submit" value="Register" />
         </Segment>
       </Form>
       <div class="ui divider"></div>

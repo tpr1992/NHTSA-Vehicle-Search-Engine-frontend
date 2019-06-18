@@ -131,30 +131,58 @@ class App extends Component {
     })
   }
 
-  showLoginForm = () => {
-    console.log('Login');
-    return <div>
-      Hello
-    <form>
-    <input>
-    </input>
-  </form>
-
-    </div>
+  handleLogin = (input) => {
+    console.log(input, "Input");
+    this.setState({
+      username: input
+    })
+    fetch('http://localhost:3000/users')
+    .then(res => res.json())
+    .then(data => {
+      return data.filter(user => {
+        return user.username === input &&
+        this.setState({
+          currentUser: user,
+          loggedIn: true,
+          username: ""
+        })
+      })
+    })
   }
+
+  logout = () => {
+    // localStorage.removeItem('logged_in')
+    this.setState({
+      currentUser: null,
+      loggedIn: !this.state.loggedIn
+    })
+  }
+
+  // <button onClick={this.showLoginForm} class="ui secondary button">Login</button>
+  // <button class="ui secondary button">Register</button>
 
   render () {
     return (
       <Grid centered>
         <Header />
-        <button onClick={this.showLoginForm} class="ui secondary button">Login</button>
-        <button class="ui secondary button">Register</button>
-        <Grid.Row centered>
+        <Grid.Row>
           {
             this.state.loggedIn ?
-            `Welcome ${this.state.currentUser.name}`
+            <div>
+            <h2 class="capitalize">Welcome {this.state.currentUser.name}!</h2>
+            <br />
+            <button onClick={this.logout} class="ui secondary button">Logout</button>
+            </div>
             :
-            <SignupForm createUserinDB={this.createUserinDB} handleSignupChange={this.handleSignupChange} usernameValue={this.state.username} passwordValue={this.state.password} setCurrentUser={this.setCurrentUser} setLogin={this.setLogin} />
+            <Grid>
+              <Grid.Row>
+                <SignupForm createUserinDB={this.createUserinDB} handleSignupChange={this.handleSignupChange} usernameValue={this.state.username} passwordValue={this.state.password} setCurrentUser={this.setCurrentUser} setLogin={this.setLogin} />
+                <Grid.Column>
+                  <h2>OR</h2>
+                </Grid.Column>
+                <LoginForm username={this.state.username} handleLogin={this.handleLogin} />
+              </Grid.Row>
+            </Grid>
           }
         </Grid.Row>
         <Grid.Row>

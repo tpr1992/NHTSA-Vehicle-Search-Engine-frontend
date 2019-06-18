@@ -1,6 +1,8 @@
 import React from 'react'
 import UserContainer from './UserContainer'
 import CarContainer from './CarContainer'
+import SignupForm from '../components/SignupForm'
+
 
 
 
@@ -8,12 +10,12 @@ class MainContainer extends React.Component {
   render () {
     return (
       <div>
-        <UserContainer allUsers={this.props.allUsers}/>
-        <CarContainer />
+        h
+        <SignupForm />
       </div>
     )
 
   }
 }
 
-export default UserContainer;
+export default MainContainer;

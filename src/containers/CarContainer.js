@@ -15,7 +15,7 @@ class CarContainer extends React.Component {
         <Card.Group>
       {
         filtered.map(car => {
-          return <Card><CarCard car={car} key={car.id} /></Card>
+          return <Card><CarCard car={car} key={car.Model_Name} /></Card>
         })
       }
       </Card.Group>
