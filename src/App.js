@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import { Grid } from 'semantic-ui-react'
+import { Route } from 'react-router-dom'
 import UserContainer from './containers/UserContainer'
 import MainContainer from './containers/MainContainer'
+import CarContainer from './containers/CarContainer'
 import SignupForm from './components/SignupForm'
-import StylingTest from './components/StylingTest.js'
+import LoginForm from './components/LoginForm'
+
+import Profile from './components/Profile'
+import Header from './components/Header'
+
+import { Button, Checkbox, Form } from 'semantic-ui-react'
+
 
 
 class App extends Component {
@@ -12,47 +21,46 @@ class App extends Component {
   state = {
     allUsers: [],
     username: "",
-    password: ""
+    password: "",
+    currentUser: null,
+    loggedIn: false,
+    searchTerm: "ferrari",
+    allCars: [],
+    filteredCars: [],
+    loading: true
   }
 
 
   componentDidMount() {
     this.fetchUsers()
+    this.fetchCars()
   }
 
   fetchUsers = () => {
     fetch('http://localhost:3000/users')
     .then(res => res.json())
     .then(allUsers => {
-        this.setState({
-          allUsers: allUsers
-        })
+      this.setState({
+        allUsers: allUsers
+      })
     })
   }
 
+
   registerNewUser = (user) => {
-    // console.log(this.state.username, this.state.password)
     this.setState({
       allUsers: [user, ...this.state.allUsers]
     })
   }
 
   handleSignupChange = (event) => {
-    // console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-    this.setState({
-      username: "",
-      password: ""
-    })
-    // console.log('Form submitted');
-    // console.log(this.state.username, this.state.password);
 
+  createUserinDB = (user) => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: {
@@ -60,29 +68,117 @@ class App extends Component {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
+        name: user.name,
+        username: user.username,
+        password: user.password
       })
     })
     .then(res => res.json())
     .then(newUser => {
-      // debugger
-      // this.registerNewUser(newUser)
       this.setState({
-        allUsers: [...this.state.allUsers, newUser]
+        currentUser: newUser,
+        allUsers: [...this.state.allUsers, newUser],
+        loggedIn: !this.state.loggedIn
       })
     })
   }
 
+  setLogin = (event) => {
+    event.preventDefault()
+    this.setState({
+      loggedIn: !this.state.loggedIn
+    })
+    localStorage.clear()
+  }
+
+  setCurrentUser = () => {
+    let currentUser = localStorage.getItem('user_id')
+    console.log(currentUser, 'is logged in');
+    this.setState({
+      currentUser: currentUser
+    })
+  }
+
+  filterCarCards = () => {
+    return this.state.allCars.map(car => {
+      if (car.Model_Name.toLowerCase().includes(this.props.searchTerm)) {
+        return car
+      }
+    })
+  }
+
+  fetchCars = () => {
+    let searchTerm = this.state.searchTerm
+    this.setState({
+      loading: true
+    })
+    // fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/ferrari?format=json`)
+    fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/${searchTerm}?format=json`)
+    .then(res => res.json())
+    .then(allCars => {
+      this.setState({
+        allCars: allCars.Results,
+        filteredCars: allCars.Results,
+        searchTerm: "",
+        loading: false
+      })
+    })
+  }
+
+  onSearchChange = (event) => {
+    this.setState({
+      searchTerm: event.target.value
+    })
+  }
+
+  showLoginForm = () => {
+    console.log('Login');
+    return <div>
+      Hello
+    <form>
+    <input>
+    </input>
+  </form>
+
+    </div>
+  }
+
   render () {
-    console.log(this.state)
     return (
-      <div>
-        <SignupForm handleSubmit={this.handleSubmit} handleSignupChange={this.handleSignupChange} usernameValue={this.state.username} passwordValue={this.state.password} />
-        <UserContainer allUsers={this.state.allUsers} />
-      </div>
+      <Grid centered>
+        <Header />
+        <button onClick={this.showLoginForm} class="ui secondary button">Login</button>
+        <button class="ui secondary button">Register</button>
+        <Grid.Row centered>
+          {
+            this.state.loggedIn ?
+            `Welcome ${this.state.currentUser.name}`
+            :
+            <SignupForm createUserinDB={this.createUserinDB} handleSignupChange={this.handleSignupChange} usernameValue={this.state.username} passwordValue={this.state.password} setCurrentUser={this.setCurrentUser} setLogin={this.setLogin} />
+          }
+        </Grid.Row>
+        <Grid.Row>
+
+          <Form>
+            <div class="ui search">
+              <div class="ui icon input">
+                <input placeholder="Search" value={this.state.searchTerm} onChange={this.onSearchChange} />
+              </div>
+              <button class="ui icon button" onClick={this.fetchCars}><i aria-hidden="true" class="search icon"></i></button>
+            </div>
+            {
+              this.state.loading ?
+              <div  style={{marginTop: 40, marginRight: 10, padding: 15}} class="ui active inline loader"></div>
+              :
+              ""
+          }
+          </Form>
+        </Grid.Row>
+        <CarContainer filteredCars={this.state.filteredCars} allCars={this.state.allCars}  searchTerm={this.state.searchTerm} />
+      </Grid>
     )
   }
 }
 
+// <UserContainer allUsers={this.state.allUsers} />
 export default App;

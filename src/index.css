@@ -15,29 +15,29 @@ body {
 } */
 
 .list-group{
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
 
-.signup{
+/* .signup{
   text-align: center;
   height: 3vw;
   /* display: grid; */
-  justify-content: center;
-  padding: 2vw;
-  display: flex;
-  flex-direction: column;
-}
+  /* justify-content: center; */
+  /* padding: 2vw; */
+  /* display: inline; */
+  /* flex-direction: column; */
+/* } */
 
-.signup-header{
+/* .signup-header{
   text-align: center;
   padding: 1vw;
-}
+} */
 
 .card {
   /* Add shadows to create the "card" effect */
-  width: 25%;
+  /* width: 25%; */
   margin: 0 auto;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -54,3 +54,17 @@ body {
 .container {
   padding: 2px 8px;
 }
+
+.ui.cards {
+  justify-content: center;
+  padding: 3em;
+}
+
+.ui.grid>.row {
+  padding-top: 2rem !important;
+}
+
+/* .ui.loader:after, .ui.loader:before {
+  margin-top: 50px;
+  margin-left: 1.2em */
+/* } */

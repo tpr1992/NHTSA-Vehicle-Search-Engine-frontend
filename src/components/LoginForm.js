@@ -5,13 +5,11 @@ import { Divider, Image, Segment, Grid, Header, Message } from 'semantic-ui-reac
 
 
 
-class SignupForm extends React.Component {
+class LoginForm extends React.Component {
 
   state = {
-    name: "",
     username: "",
-    password: "",
-    passwordConfirmation: ""
+    password: ""
   }
 
   handleChange = (event) => {
@@ -36,11 +34,11 @@ class SignupForm extends React.Component {
   renderV2 = () => {
     return (
       <Grid textAlign='center' style={{ height: '35vh', marginBottom: 40 }} verticalAlign='middle'>
-        <div className="signup1">
+        <div className="login1">
         <Header as='h2' color='black' textAlign='center'>
-          Sign Up
+          Log In
         </Header>
-      <Form size="medium" className="signup-form" onSubmit={this.handleSubmit} style={{width: 422}}>
+      <Form size="medium" className="login-form" onSubmit={this.handleSubmit} style={{width: 422}}>
       <Segment flat>
       <Form.Input
           fluid icon='user' iconPosition='left' id="name-input" name="name" placeholder="Enter your name..." onChange={this.handleChange} value={this.state.name} />
@@ -72,4 +70,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default SignupForm;
+export default LoginForm;

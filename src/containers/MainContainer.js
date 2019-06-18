@@ -1,5 +1,7 @@
 import React from 'react'
 import UserContainer from './UserContainer'
+import CarContainer from './CarContainer'
+
 
 
 class MainContainer extends React.Component {
@@ -7,6 +9,7 @@ class MainContainer extends React.Component {
     return (
       <div>
         <UserContainer allUsers={this.props.allUsers}/>
+        <CarContainer />
       </div>
     )
 
