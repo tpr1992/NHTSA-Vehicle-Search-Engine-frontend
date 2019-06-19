@@ -129,6 +129,17 @@ class App extends Component {
     })
   }
 
+    sortCarCards = () => {
+      let sortCars = [...this.state.allCars]
+      return sortCars.Model_Name.sort((a, b) => {
+        return a.Model_Name.localeCompare(b.Model_Name)
+        // if (a < b) return -1;
+        // else if (a > b) return 1;
+        // return 0
+      })
+      return sortCars
+    }
+
 
   fetchCars = () => {
     let searchTerm = this.state.searchTerm
@@ -149,6 +160,7 @@ class App extends Component {
 
 
   onSearchChange = (event) => {
+    // debugger
     this.setState({
       searchTerm: event.target.value
     })
@@ -168,9 +180,9 @@ class App extends Component {
     })
   }
 
+  // <button onClick={this.sortCarCards}>Sort</button>
 
   render () {
-    console.log(this.state);
     return (
       <Grid centered>
         <Header />

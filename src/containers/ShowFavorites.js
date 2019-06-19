@@ -6,7 +6,10 @@ import { Card } from 'semantic-ui-react'
 
 class ShowFavorites extends React.Component {
 
-  
+  state = {
+    active: false
+  }
+
   render () {
 
     return (
@@ -22,17 +25,15 @@ class ShowFavorites extends React.Component {
           </div>
           </div>
           <div class="extra content">
-          {
-            this.props.loggedIn === true ?
+
             <div class="center aligned author">
-            Like
+            Liked!
             <div class="item-like">
-            <i aria-hidden="false" class="like icon" style={{color: 'dark-red'}}></i>
+            <i aria-hidden="false" class="red heart icon" style={{color: 'dark-red'}}></i>
             </div>
             </div>
-            :
-            ""
-          }
+
+
           </div>
           </div>
           </Card>

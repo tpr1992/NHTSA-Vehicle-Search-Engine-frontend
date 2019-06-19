@@ -8,7 +8,6 @@ class CarContainer extends React.Component {
 
   handleLike = (car) => {
     console.log(car.Make_Name, car.Model_Name, this.props.currentUser.id)
-    // debugger
     fetch('http://localhost:3000/cars', {
       method: 'POST',
       headers: {
@@ -25,6 +24,7 @@ class CarContainer extends React.Component {
     .then(data => {
     })
   }
+
 
   render () {
     let filtered = this.props.allCars.filter(car => car.Model_Name.toLowerCase().includes(this.props.searchTerm.toLowerCase()))
