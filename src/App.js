@@ -1,13 +1,12 @@
 import './App.css';
+import Header from './components/Header'
 import React, { Component } from 'react';
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
+import CarContainer from './containers/CarContainer'
 import { Route, Switch, Link } from 'react-router-dom'
 import { Grid, Button, Form } from 'semantic-ui-react'
-import CarContainer from './containers/CarContainer'
 import ShowFavorites from './containers/ShowFavorites'
-import SignupForm from './components/SignupForm'
-import LoginForm from './components/LoginForm'
-import Header from './components/Header'
-
 
 
 class App extends Component {
@@ -129,16 +128,13 @@ class App extends Component {
     })
   }
 
-    sortCarCards = () => {
-      let sortCars = [...this.state.allCars]
-      return sortCars.Model_Name.sort((a, b) => {
-        return a.Model_Name.localeCompare(b.Model_Name)
-        // if (a < b) return -1;
-        // else if (a > b) return 1;
-        // return 0
-      })
-      return sortCars
-    }
+  sortCarCards = () => {
+    let sortCars = [...this.state.allCars]
+    return sortCars.Model_Name.sort((a, b) => {
+      return a.Model_Name.localeCompare(b.Model_Name)
+    })
+    return sortCars
+  }
 
 
   fetchCars = () => {
@@ -160,7 +156,6 @@ class App extends Component {
 
 
   onSearchChange = (event) => {
-    // debugger
     this.setState({
       searchTerm: event.target.value
     })
@@ -179,8 +174,6 @@ class App extends Component {
       })
     })
   }
-
-  // <button onClick={this.sortCarCards}>Sort</button>
 
   render () {
     return (

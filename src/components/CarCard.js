@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 class CarCard extends React.Component {
 
   state = {
@@ -16,11 +15,11 @@ class CarCard extends React.Component {
 
   showLike = () => {
     return <div class="center aligned author">
-          Like
-          <div class="item-like" onClick={() => this.handleLike(this.props.car)}>
-            <i aria-hidden="false" class="like icon" style={{color: 'dark-red'}}></i>
-          </div>
-        </div>
+      Like
+      <div class="item-like" onClick={() => this.handleLike(this.props.car)}>
+        <i aria-hidden="false" class="like icon" style={{color: 'dark-red'}}></i>
+      </div>
+    </div>
   }
 
   makeCarCard2 = (car) => {

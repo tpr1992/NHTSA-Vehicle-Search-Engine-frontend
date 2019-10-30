@@ -1,10 +1,8 @@
 import React from 'react'
-import CarCard from '../components/CarCard'
 import { Card } from 'semantic-ui-react'
-
+import CarCard from '../components/CarCard'
 
 class CarContainer extends React.Component {
-
 
   handleLike = (car) => {
     console.log(car.Make_Name, car.Model_Name, this.props.currentUser.id)
@@ -24,7 +22,6 @@ class CarContainer extends React.Component {
     .then(data => {
     })
   }
-
 
   render () {
     let filtered = this.props.allCars.filter(car => car.Model_Name.toLowerCase().includes(this.props.searchTerm.toLowerCase()))

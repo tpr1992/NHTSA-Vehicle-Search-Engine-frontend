@@ -1,7 +1,6 @@
 import React from 'react'
 import { Form, Segment, Grid, Header } from 'semantic-ui-react'
 
-
 class LoginForm extends React.Component {
 
   state = {
@@ -9,19 +8,16 @@ class LoginForm extends React.Component {
     password: ""
   }
 
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-
   handleSubmit = (event) => {
     event.preventDefault()
     this.props.handleLogin(this.state.username)
   }
-
 
   renderV2 = () => {
     return (
@@ -41,12 +37,10 @@ class LoginForm extends React.Component {
             </Segment>
           </Form>
           <div class="ui divider" style={{height: '50vh'}}></div>
-
         </div>
       </Grid>
     )
   }
-
 
   render () {
     return (
