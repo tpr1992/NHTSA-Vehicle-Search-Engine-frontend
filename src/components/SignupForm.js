@@ -11,14 +11,12 @@ class SignupForm extends React.Component {
     passwordConfirmation: ""
   }
 
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
     console.log(this.state);
   }
-
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -29,7 +27,6 @@ class SignupForm extends React.Component {
       alert("Password's don't match")
     }
   }
-
 
   renderV2 = () => {
     return (
@@ -57,7 +54,6 @@ class SignupForm extends React.Component {
       </Grid>
     )
   }
-
 
   render () {
     return (

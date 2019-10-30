@@ -1,7 +1,5 @@
 import React from 'react'
 import { Menu, Segment } from 'semantic-ui-react'
-// import { Route, Switch, Link } from 'react-router-dom'
-
 
 class Header extends React.Component {
 
@@ -9,13 +7,11 @@ class Header extends React.Component {
     activeItem: 'home'
   }
 
-
   handleItemClick = (event, { name }) => {
     this.setState({
       activeItem: name
     })
   }
-
 
   render() {
     const { activeItem } = this.state
@@ -33,9 +29,7 @@ class Header extends React.Component {
             active={activeItem === 'Favorites'}
             onClick={this.handleItemClick}
             />
-
         </Menu>
-
       </Segment>
     )
   }

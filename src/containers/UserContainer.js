@@ -1,7 +1,6 @@
 import React from 'react'
 import User from '../components/User'
 
-
 class UserContainer extends React.Component {
 
   render () {
@@ -11,7 +10,6 @@ class UserContainer extends React.Component {
         return <div> <User key={user.id} user={user}/> </div>
       })
     )
-
   }
 }
 

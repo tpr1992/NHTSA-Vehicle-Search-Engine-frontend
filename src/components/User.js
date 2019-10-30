@@ -6,20 +6,20 @@ class User extends React.Component {
     return <div>
       <div className="card">
         <div className="container">
-            <h5 className="card-title">
+          <h5 className="card-title">
             {
               user.username
             }
-            </h5>
-            <p className="card-text">
+          </h5>
+          <p className="card-text">
             {
               user.name
             }
-            </p>
-          </div>
+          </p>
         </div>
-        <br />
       </div>
+      <br />
+    </div>
   }
 
   render () {
